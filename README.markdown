@@ -2,22 +2,28 @@
 
 Access the Context.IO API from Clojure.
 
-## Building
-
-    $ lein deps
-    $ lein jar
-
 ## Usage
 
 ``` clojure
-(require 'context-io)
+(ns mynamespace
+  (:use
+    [context-io.oauth]
+    [context-io.api]))
 
 ;; Make an OAuth consumer
-(def oauth-consumer (context-io/make-consumer <key> <secret>))
+(def ^:dynamic *creds* (make-oauth-creds <key> <secret>))
 
 ;; List your accounts
-(context-io/list-accounts oauth-consumer)
+(list-accounts *creds*)
 ```
+
+## Building
+
+Simply use leiningen to build the library into a jar, like this:
+
+    $ git clone git://github.com/dvyjones/context-io-clj.git
+    $ cd context-io-clj
+    $ lein jar
 
 ## License
 
