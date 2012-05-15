@@ -1,11 +1,13 @@
 (ns context-io.test.api
   (:use
     [clojure.test]
-    [context-io.api]))
+    [context-io.api])
+  (:import
+    (context_io.api ApiContext)))
 
 (deftest test-make-uri
   (is (= (make-uri
-          (make-api-context "https" "api.context.io" "2.0")
+          (ApiContext. "https" "api.context.io" "2.0")
           "accounts")
          "https://api.context.io/2.0/accounts")))
 
