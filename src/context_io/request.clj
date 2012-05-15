@@ -1,4 +1,5 @@
 (ns context-io.request
+  "Helper functions for dealing with requests."
   (:use
     [context-io.callbacks])
   (:require
@@ -11,7 +12,15 @@
     (java.io File InputStream)))
 
 (defn execute-request-callbacks
-  "Submits the request and then calls back to the callbacks"
+  "Submit the actual request, and call the calbacks.
+
+   client    - The client to use for submitting the request.
+   req       - The request to submit.
+   callbacks - A map of the possible callbacks to run. The keys are keyword
+               event names, and the values are functions. Possible event names
+               are :on-success, :on-faulre and :on-exception.
+
+   Returns the return value from the callback that got called."
   [client req callbacks]
   (let [transform #(handle-response (ac/await %) callbacks :events #{:on-success :on-failure :on-exception})
         response (apply req/execute-request client req (apply concat (emit-callback-list callbacks)))]
@@ -71,8 +80,19 @@
     (.setPerRequestConfig rb prc)))
 
 (defn prepare-request-with-multi
-  "The same as a normal prepare-request, but deals with multi-part form-data as
-   a content-type."
+  "Prepare a request, allowing multi-part form data
+
+   method   - The HTTP method for the request (:get, :post, etc.).
+   url      - The URL for the request.
+   :headers - The headers for the request (optional).
+   :query   - The query parameters for the request (optional).
+   :body    - The body for the request (optional).
+   :cookies - The cookies for the request (optional).
+   :proxy   - The proxy for the request (optional).
+   :auth    - The authentication details for the request (optional).
+   :timeout - The timeout for the request (optional).
+
+   Returns the request with the given information."
   [method #^String url & {:keys [headers query body cookies proxy auth timeout]}]
   (let [rb (RequestBuilder. (req/convert-method method))]
     (when headers (add-headers rb headers))

@@ -25,6 +25,27 @@ Simply use leiningen to build the library into a jar, like this:
     $ cd context-io-clj
     $ lein jar
 
+## Documentation
+
+This project uses a version of [TomDoc][tomdoc] for the docstrings. The
+docstring follow the 1.0.0-rc1, with one change:
+
+### The Arguments Section
+
+Follow the TomDoc spec. If the name of the argument begins with a colon (":"),
+the argument is part of a series of map-like arguments at the end:
+
+``` clojure
+(defn multiplex
+  "...
+   text   - The string to be duplicated.
+   :count - The number of times to duplicate the text."
+  [text & {:keys [count]}]
+  <implementation>)
+```
+
+[tomdoc]: http://tomdoc.org
+
 ## Versioning
 
 This project follows [Semantic Versioning][semver]. Note that the current
