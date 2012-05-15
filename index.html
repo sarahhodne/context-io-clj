@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>context-io-clj by dvyjones</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>context-io-clj</h1>
+        <p>Context.IO API wrapper for Clojure.</p>
+        <p class="view"><a href="https://github.com/dvyjones/context-io-clj">View the Project on GitHub <small>dvyjones/context-io-clj</small></a></p>
+        <ul>
+          <li><a href="https://github.com/dvyjones/context-io-clj/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dvyjones/context-io-clj/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dvyjones/context-io-clj">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Context.IO API wrapper for Clojure</h1>
+
+<p>Access the Context.IO API from Clojure.</p>
+
+<h2>Usage</h2>
+
+<div class="highlight">
+<pre><span class="p">(</span><span class="kd">ns </span><span class="nv">mynamespace</span>
+  <span class="p">(</span><span class="ss">:use</span>
+    <span class="p">[</span><span class="nv">context-io.oauth</span><span class="p">]</span>
+    <span class="p">[</span><span class="nv">context-io.api.two</span><span class="p">]))</span>
+
+<span class="c1">;; Make an OAuth consumer</span>
+<span class="p">(</span><span class="k">def </span><span class="o">^</span><span class="ss">:dynamic</span> <span class="nv">*creds*</span> <span class="p">(</span><span class="nf">make-oauth-creds</span> <span class="nv">&lt;key&gt;</span> <span class="nv">&lt;secret&gt;</span><span class="p">))</span>
+
+<span class="c1">;; List your accounts</span>
+<span class="p">(</span><span class="nf">list-accounts</span> <span class="nv">*creds*</span><span class="p">)</span>
+</pre>
+</div>
+
+
+<h2>Building</h2>
+
+<p>Simply use leiningen to build the library into a jar, like this:</p>
+
+<pre><code>$ git clone git://github.com/dvyjones/context-io-clj.git
+$ cd context-io-clj
+$ lein jar
+</code></pre>
+
+<h2>Documentation</h2>
+
+<p>This project uses a version of <a href="http://tomdoc.org">TomDoc</a> for the docstrings. The
+docstring follow the 1.0.0-rc1, with one change:</p>
+
+<h3>The Arguments Section</h3>
+
+<p>Follow the TomDoc spec. If the name of the argument begins with a colon (":"),
+the argument is part of a series of map-like arguments at the end:</p>
+
+<div class="highlight">
+<pre><span class="p">(</span><span class="kd">defn </span><span class="nv">multiplex</span>
+  <span class="s">"...</span>
+<span class="s">   text   - The string to be duplicated.</span>
+<span class="s">   :count - The number of times to duplicate the text."</span>
+  <span class="p">[</span><span class="nv">text</span> <span class="o">&amp;</span> <span class="p">{</span><span class="ss">:keys</span> <span class="p">[</span><span class="nv">count</span><span class="p">]}]</span>
+  <span class="nv">&lt;implementation&gt;</span><span class="p">)</span>
+</pre>
+</div>
+
+
+<h2>Versioning</h2>
+
+<p>This project follows <a href="http://semver.org">Semantic Versioning</a>. Note that the current
+version is less than 1.0, which means that the public API is not yet defined
+and could change at any time. However, I am fairly certain that this will be
+the public API, and the only thing I might change are the names of some of the
+functions in <code>context-io.api.two</code>. So experiment away, but I'd wait until at
+least 0.1 or 0.2 before using this in production.</p>
+
+<h2>License</h2>
+
+<p>Copyright (C) 2012 Henrik Hodne. See LICENSE for details.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dvyjones">dvyjones</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
