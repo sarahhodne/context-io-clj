@@ -15,6 +15,9 @@ Access the Context.IO API from Clojure.
 
 ;; List your accounts
 (list-accounts *creds*)
+
+;; List the first five accounts
+(list-accounts *creds* :params {:limit 5})
 ```
 
 ## Building
